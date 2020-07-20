@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import _ from "lodash";
-import PropTypes, { number, func } from "prop-types";
+import { number, func } from "prop-types";
 
 const Pagination = props => {
   const { pageSize, totalItems, onPageClick, currentPage } = props;
@@ -15,7 +15,7 @@ const Pagination = props => {
         {pageNo.map(page => (
           <li
             key={page}
-            className={page == currentPage ? "page-item active" : "page-item"}
+            className={page === currentPage ? "page-item active" : "page-item"}
           >
             <a onClick={() => onPageClick(page)} className="page-link">
               {page}
