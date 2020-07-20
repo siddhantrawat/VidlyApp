@@ -18,21 +18,21 @@ class Movies extends Component {
     genres: [],
     selectedGenre: "Select all",
     sortColumn: { path: "title", order: "asc" },
-    searchQuery: ""
+    searchQuery: "",
   };
 
   async componentDidMount() {
     const genres = [
       { _id: "", name: "Select all" },
-      ...(await getGenres()).data
+      ...(await getGenres()).data,
     ];
     const { data: movies } = await getMovies();
     this.setState({ movies, genres });
   }
 
-  handleDelete = async movie => {
+  handleDelete = async (movie) => {
     const originalMovies = this.state.movies;
-    const movies = originalMovies.filter(m => m._id != movie._id);
+    const movies = originalMovies.filter((m) => m._id !== movie._id);
     this.setState({ movies });
     try {
       await deleteMovie(movie._id);
@@ -45,7 +45,7 @@ class Movies extends Component {
     }
   };
 
-  handleLike = movie => {
+  handleLike = (movie) => {
     let mov = [...this.state.movies];
     const index = mov.indexOf(movie);
     mov[index] = { ...mov[index] };
@@ -53,25 +53,25 @@ class Movies extends Component {
     this.setState({ movies: mov });
   };
 
-  handlePageChange = page => {
+  handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
 
-  handleSelectGenre = genre => {
+  handleSelectGenre = (genre) => {
     this.setState({ selectedGenre: genre.name });
     this.setState({ currentPage: 1, searchQuery: "" });
   };
   0;
 
-  handleSort = sortColumn => {
+  handleSort = (sortColumn) => {
     this.setState({ sortColumn });
   };
 
-  handleSearch = query => {
+  handleSearch = (query) => {
     this.setState({
       searchQuery: query,
       selectedGenre: "Select all",
-      currentPage: 1
+      currentPage: 1,
     });
   };
   getPageData = () => {
@@ -81,13 +81,13 @@ class Movies extends Component {
       movies: allMovies,
       currentPage,
       sortColumn,
-      searchQuery
+      searchQuery,
     } = this.state;
 
     let filteredMovies = allMovies;
 
     if (searchQuery)
-      filteredMovies = allMovies.filter(m =>
+      filteredMovies = allMovies.filter((m) =>
         m.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
@@ -110,7 +110,7 @@ class Movies extends Component {
       movies: allMovies,
       currentPage,
       sortColumn,
-      searchQuery
+      searchQuery,
     } = this.state;
 
     const { length: count } = allMovies;

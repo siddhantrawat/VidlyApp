@@ -1,21 +1,21 @@
 import React from "react";
-import { filter } from "../util/filter";
-const Filter = props => {
+
+const Filter = (props) => {
   const {
     items,
     valueProperty,
     textProperty,
     onItemSelect,
-    selectedItem
+    selectedItem,
   } = props;
 
   return (
     <ul className="list group">
-      {items.map(item => (
+      {items.map((item) => (
         <li
           key={item[valueProperty]}
           className={
-            selectedItem == item[textProperty]
+            selectedItem === item[textProperty]
               ? "list-group-item active"
               : "list-group-item"
           }
